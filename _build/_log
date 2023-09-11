@@ -1,0 +1,16 @@
+### Starting build.
+# Target: execute_tests.ml.depends, tags: { extension:ml, file:execute_tests.ml, ocaml, ocamldep, quiet }
+ocamldep.opt -modules execute_tests.ml > execute_tests.ml.depends # cached
+# Target: execute.ml.depends, tags: { extension:ml, file:execute.ml, ocaml, ocamldep, quiet }
+ocamldep.opt -modules execute.ml > execute.ml.depends
+# Target: tests.ml.depends, tags: { extension:ml, file:tests.ml, ocaml, ocamldep, quiet }
+ocamldep.opt -modules tests.ml > tests.ml.depends # cached
+# Target: tests.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:tests.cmo, file:tests.ml, implem, ocaml, quiet }
+ocamlc.opt -c -o tests.cmo tests.ml # cached
+# Target: execute.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:execute.cmo, file:execute.ml, implem, ocaml, quiet }
+ocamlc.opt -c -o execute.cmo execute.ml
+# Target: execute_tests.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:execute_tests.cmo, file:execute_tests.ml, implem, ocaml, quiet }
+ocamlc.opt -c -o execute_tests.cmo execute_tests.ml
+# Target: execute_tests.byte, tags: { byte, dont_link_with, extension:byte, file:execute_tests.byte, link, ocaml, program, quiet }
+ocamlc.opt execute.cmo tests.cmo execute_tests.cmo -o execute_tests.byte
+# Compilation successful.
